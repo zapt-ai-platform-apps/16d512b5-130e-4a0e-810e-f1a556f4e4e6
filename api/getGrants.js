@@ -30,12 +30,14 @@ Business information:
 
 Please make sure the response is in JSON format as specified.`;
 
+    console.log('Sending request to Perplexity API with prompt:', prompt);
+
     const response = await fetch('https://api.perplexity.ai/chat/completions', {
       method: 'POST',
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        Authorization: `Bearer ${process.env.PERPLEXITY_API_KEY}`,
+        Authorization: `Bearer ${process.env.VITE_PUBLIC_PERPLEXITY_API_KEY}`,
       },
       body: JSON.stringify({
         model: 'llama-3.1-sonar-small-128k-online',
