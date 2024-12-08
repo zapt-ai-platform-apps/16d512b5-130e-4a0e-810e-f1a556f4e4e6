@@ -47,17 +47,14 @@ export default function App() {
       </Show>
 
       <Show when={currentPage() === 'results'}>
-        <Results
-          grants={grants}
-          setCurrentPage={setCurrentPage}
-        />
+        <Results grants={grants} setCurrentPage={setCurrentPage} />
       </Show>
 
       <a
         href="https://www.zapt.ai"
         target="_blank"
         rel="noopener noreferrer"
-        class="mt-8 text-purple-600 hover:underline"
+        class="mt-8 text-purple-600 hover:underline no-print"
       >
         Made on ZAPT
       </a>

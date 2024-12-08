@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+  }
+  #root {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+  .printable {
+    font-size: 12pt;
+    color: black;
+  }
+}

@@ -7,7 +7,7 @@ Welcome to the Business Grant Finder! This app helps UK business owners find pot
 1. [Introduction](docs/journeys/introduction.md) - Understand what the app does.
 2. [Provide Business Information](docs/journeys/provide-business-information.md) - Answer questions about your business.
 3. [View Grant Results](docs/journeys/view-grant-results.md) - See a list of grants suitable for your business.
-4. [Export and Share Results](docs/journeys/export-and-share-results.md) - Export results to MS Word or share via messaging apps.
+4. [Export, Share, and Print Results](docs/journeys/export-and-share-results.md) - Export results to MS Word, share, or print the full grant information.
 
 ---
 
