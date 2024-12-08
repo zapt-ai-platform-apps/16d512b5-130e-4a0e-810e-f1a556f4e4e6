@@ -14,6 +14,8 @@ Welcome to the Business Grant Finder! This app helps UK business owners find pot
 ## External APIs Used
 
 - **Perplexity AI**: Used to generate a list of grants based on user input.
+- **Sentry**: Used for error logging and monitoring on both frontend and backend.
+- **Umami Analytics**: Used to track website analytics.
 
 ---
 
@@ -27,6 +29,13 @@ Welcome to the Business Grant Finder! This app helps UK business owners find pot
 
 ## Environment Variables
 
-The following environment variable needs to be set:
+The following environment variables need to be set (add them to a `.env` file in the root directory):
 
 - `VITE_PUBLIC_PERPLEXITY_API_KEY`: Your Perplexity AI API key.
+- `VITE_PUBLIC_SENTRY_DSN`: Your Sentry DSN for error logging on frontend.
+- `VITE_PUBLIC_APP_ENV`: The current environment ('development' or 'production').
+- `PROJECT_ID`: Your Sentry project ID for backend error logging.
+- `VITE_PUBLIC_APP_ID`: Your application ID.
+- `VITE_PUBLIC_UMAMI_WEBSITE_ID`: Your Umami website ID for analytics.
+
+---
