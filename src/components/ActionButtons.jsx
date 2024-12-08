@@ -1,76 +1,23 @@
-import { saveAs } from 'file-saver';
-import { Document, Packer, Paragraph, HeadingLevel } from 'docx';
+import { createSignal } from 'solid-js';
+import { handleExportToWord, handleShare, handlePrint } from '../utils/ActionHandlers';
 
 export default function ActionButtons(props) {
   const { grants, setCurrentPage } = props;
-
-  const handleExportToWord = async () => {
-    const doc = new Document();
-
-    const grantParagraphs = grants().flatMap((grant) => [
-      new Paragraph({
-        text: grant.name,
-        heading: HeadingLevel.HEADING_2,
-      }),
-      new Paragraph({
-        text: grant.description,
-      }),
-      new Paragraph({
-        text: `Eligibility Criteria: ${grant.eligibilityCriteria}`,
-      }),
-      new Paragraph({
-        text: `Website: ${grant.website}`,
-      }),
-    ]);
-
-    doc.addSection({
-      children: [
-        new Paragraph({
-          text: 'Grant Results',
-          heading: HeadingLevel.HEADING_1,
-        }),
-        ...grantParagraphs,
-      ],
-    });
-
-    const blob = await Packer.toBlob(doc);
-    saveAs(blob, 'GrantResults.docx');
-  };
-
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Grant Results',
-          text: `Here are the grants suitable for our business:\n\n${grants()
-            .map(
-              (grant) =>
-                `Grant Name: ${grant.name}\nDescription: ${grant.description}\nEligibility Criteria: ${grant.eligibilityCriteria}\nWebsite: ${grant.website}\n`
-            )
-            .join('\n')}`,
-        });
-      } catch (error) {
-        console.error('Error sharing:', error);
-      }
-    } else {
-      alert('Sharing is not supported in this browser.');
-    }
-  };
-
-  const handlePrint = () => {
-    window.print();
-  };
+  const [exportLoading, setExportLoading] = createSignal(false);
 
   return (
     <div class="flex flex-wrap mt-6 space-x-4">
       <button
-        onClick={handleExportToWord}
-        class="mt-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+        onClick={() => handleExportToWord(grants, setExportLoading)}
+        class={`mt-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer ${
+          exportLoading() ? 'opacity-50 cursor-not-allowed' : ''
+        }`}
+        disabled={exportLoading()}
       >
-        Export to MS Word
+        {exportLoading() ? 'Exporting...' : 'Export to MS Word'}
       </button>
       <button
-        onClick={handleShare}
+        onClick={() => handleShare(grants)}
         class="mt-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
       >
         Share Results
