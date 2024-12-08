@@ -9,51 +9,12 @@ export default function QuestionsForm(props) {
     setLoading(true);
 
     try {
-      const prompt = `Based on the following business information, provide a list of UK-wide and local grants suitable for the business.
-Please output the results in the following JSON format:
-{
-  "grants": [
-    {
-      "name": "Grant Name",
-      "description": "Detailed description of the grant",
-      "eligibilityCriteria": "Eligibility criteria for the grant",
-      "website": "Link to the grant's website"
-    },
-    ...
-  ]
-}
-
-Business information:
-1. Business Description: ${answers().businessDescription}
-2. Customer Types: ${answers().customerTypes}
-3. Sector: ${answers().sector}
-4. Annual Turnover: ${answers().annualTurnover}
-5. Years Operating: ${answers().yearsOperating}
-6. Business Location: ${answers().businessLocation}
-7. Supply Area: ${answers().supplyArea}
-
-Please make sure the response is in JSON format as specified.`;
-
-      const response = await fetch('https://api.perplexity.ai/chat/completions', {
+      const response = await fetch('/api/getGrants', {
         method: 'POST',
         headers: {
-          'accept': 'application/json',
-          'content-type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_PUBLIC_PERPLEXITY_API_KEY}`,
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          "model": "llama-3.1-sonar-small-128k-online",
-          "messages": [
-            {
-              "role": "system",
-              "content": "Be precise and concise.",
-            },
-            {
-              "role": "user",
-              "content": prompt,
-            }
-          ]
-        }),
+        body: JSON.stringify({ answers: answers() }),
       });
 
       if (!response.ok) {
@@ -61,15 +22,9 @@ Please make sure the response is in JSON format as specified.`;
       }
 
       const data = await response.json();
-      console.log('Perplexity API response:', data);
+      console.log('API response:', data);
 
-      // Extract the assistant's reply
-      const resultText = data.choices[0].message.content;
-
-      // Parse the JSON response
-      const result = JSON.parse(resultText);
-
-      setGrants(result.grants);
+      setGrants(data.grants);
       setCurrentPage('results');
     } catch (error) {
       console.error('Error fetching grants:', error);

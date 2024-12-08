@@ -11,8 +11,10 @@
   "dependencies": {
     "solid-js": "^1.8.22",
     "@sentry/browser": "^8.35.0",
+    "@sentry/node": "^8.35.0",
     "docx": "^7.7.0",
-    "file-saver": "^2.0.5"
+    "file-saver": "^2.0.5",
+    "node-fetch": "^3.3.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
