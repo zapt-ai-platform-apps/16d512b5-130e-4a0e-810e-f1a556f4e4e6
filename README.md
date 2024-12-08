@@ -13,7 +13,7 @@ Welcome to the Business Grant Finder! This app helps UK business owners find pot
 
 ## External APIs Used
 
-- **ChatGPT via ZAPT Events**: Used to generate a list of grants based on user input.
+- **Perplexity AI**: Used to generate a list of grants based on user input.
 
 ---
 
@@ -22,3 +22,11 @@ Welcome to the Business Grant Finder! This app helps UK business owners find pot
 - This is a mobile-first application. For the best experience, use it on a mobile device.
 - All data processing happens via secure backend services.
 - The app is free to use.
+
+---
+
+## Environment Variables
+
+The following environment variable needs to be set:
+
+- `VITE_PUBLIC_PERPLEXITY_API_KEY`: Your Perplexity AI API key.
