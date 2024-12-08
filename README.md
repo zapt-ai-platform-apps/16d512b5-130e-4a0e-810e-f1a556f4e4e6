@@ -29,4 +29,4 @@ Welcome to the Business Grant Finder! This app helps UK business owners find pot
 
 The following environment variable needs to be set:
 
-- `VITE_PUBLIC_PERPLEXITY_API_KEY`: Your Perplexity AI API key.
+- `PERPLEXITY_API_KEY`: Your Perplexity AI API key.
